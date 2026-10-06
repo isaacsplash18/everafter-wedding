@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Everafter admin — Settings
+   ========================================================================== */
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+}
+
+.settings-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}

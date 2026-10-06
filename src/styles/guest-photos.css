@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Everafter — Photos: a masonry wall via CSS columns, no measuring needed.
+   ========================================================================== */
+
+.photos-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--gutter);
+}
+
+.photos-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.photos-head p {
+  margin-top: var(--space-2);
+  color: var(--ink-muted);
+  max-width: 40ch;
+}
+
+/* --- upload affordance ------------------------------------------------------- */
+
+.photos-upload {
+  margin-bottom: var(--space-7);
+  padding: var(--space-5);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+}
+
+.photos-upload__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.photos-upload__head h2 {
+  font-size: var(--fs-h3);
+}
+
+.photos-upload__form {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.photos-upload__options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.photos-upload__option {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-input);
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.photos-upload__option img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photos-upload__option--selected {
+  border-color: var(--honey);
+}
+
+.photos-upload__option--selected::after {
+  content: '✓';
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: var(--honey-deep);
+  color: oklch(1 0 0);
+  font-size: 0.75rem;
+}
+
+.photos-upload__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.photos-upload__note {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+/* --- masonry ------------------------------------------------------------------ */
+
+.photos-masonry {
+  column-count: 1;
+  column-gap: var(--space-4);
+}
+
+@media (min-width: 32rem) {
+  .photos-masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 60rem) {
+  .photos-masonry {
+    column-count: 3;
+  }
+}
+
+.photos-tile {
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.photos-tile__img {
+  width: 100%;
+  height: auto;
+}
+
+.photos-tile__caption {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.photos-tile__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.photos-tile__caption-line {
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+
+.photos-tile__credit {
+  margin-top: 0.15rem;
+  font-size: var(--fs-micro);
+  color: var(--ink-muted);
+}
+
+.photos-tile__like {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.25rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard);
+}
+
+.photos-tile__heart {
+  width: 0.9rem;
+  height: 0.85rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.photos-tile__like--active {
+  border-color: var(--honey);
+  color: var(--honey-deep);
+}
+
+.photos-tile__like--active .photos-tile__heart {
+  fill: var(--honey-deep);
+  stroke: var(--honey-deep);
+}

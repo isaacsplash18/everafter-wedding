@@ -1,0 +1,484 @@
+/* ==========================================================================
+   Everafter — UI kit (src/components/ui)
+   ========================================================================== */
+
+/* --- Button --------------------------------------------------------------- */
+
+.btn {
+  --btn-min-h: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--btn-min-h);
+  padding: 0.6rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.btn--sm {
+  --btn-min-h: 36px;
+  padding: 0.35rem 0.9rem;
+  font-size: var(--fs-micro);
+}
+
+.btn--lg {
+  --btn-min-h: 52px;
+  padding: 0.85rem 2.25rem;
+  font-size: var(--fs-body);
+}
+
+/* White on honey-deep: 5.6:1 (bright --honey fails AA for label text). */
+.btn--primary {
+  background: var(--honey-deep);
+  color: oklch(1 0 0);
+  border-color: var(--honey-deep);
+}
+
+.btn--primary:not(:disabled):hover {
+  background: var(--honey-pressed);
+  border-color: var(--honey-pressed);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border-firm);
+}
+
+.btn--secondary:not(:disabled):hover {
+  background: var(--surface);
+}
+
+.btn--quiet {
+  background: transparent;
+  color: var(--indigo-bright);
+  border-color: transparent;
+  padding-inline: 0.5rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: oklch(0.45 0.09 265 / 0.4);
+}
+
+.btn--quiet:not(:disabled):hover {
+  color: var(--indigo);
+  text-decoration-color: currentColor;
+}
+
+.btn--danger.btn--secondary {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn--danger.btn--quiet {
+  color: var(--danger);
+}
+
+/* On a night section the honey button stays; the secondary flips to paper. */
+.on-night .btn--secondary {
+  color: var(--night-ink);
+  border-color: var(--night-rule);
+}
+
+.on-night .btn--secondary:not(:disabled):hover {
+  background: oklch(1 0 0 / 0.08);
+}
+
+.on-night .btn--quiet {
+  color: var(--night-ink);
+}
+
+/* --- Field shell (TextField / SelectField) -------------------------------- */
+
+.field {
+  display: block;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  color: var(--ink);
+}
+
+.field__optional {
+  margin-left: 0.4rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.field__hint {
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.field__control {
+  position: relative;
+  display: block;
+}
+
+.field__input {
+  display: block;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0.65rem 0.9rem;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+textarea.field__input {
+  min-height: 6.5rem;
+  resize: vertical;
+  line-height: var(--lh-body);
+}
+
+.field__input::placeholder {
+  color: var(--ink-muted);
+  opacity: 0.75;
+}
+
+.field__input:hover:not(:disabled) {
+  border-color: var(--ink-muted);
+}
+
+/* DESIGN.md: 2px honey focus ring. The deeper honey border keeps the
+   indicator itself above 3:1 against the white paper. */
+.field__input:focus-visible {
+  outline: none;
+  border-color: var(--honey-deep);
+  box-shadow: 0 0 0 2px var(--honey);
+}
+
+.field__input:disabled {
+  background: var(--surface);
+  color: var(--ink-muted);
+  cursor: not-allowed;
+}
+
+.field--invalid .field__input {
+  border-color: var(--danger);
+}
+
+.field--invalid .field__input:focus-visible {
+  box-shadow: 0 0 0 2px var(--danger);
+}
+
+/* Errors are always words, never colour alone. */
+.field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--danger);
+}
+
+.field__error::before {
+  content: '!';
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.15rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+/* --- Select --------------------------------------------------------------- */
+
+.field__control--select::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.35rem;
+  border-right: 1.5px solid var(--ink-muted);
+  border-bottom: 1.5px solid var(--ink-muted);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+select.field__input {
+  appearance: none;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* --- Segmented (attendance toggle) ---------------------------------------- */
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(var(--segmented-cols, 2), 1fr);
+  gap: 0.5rem;
+}
+
+.segmented__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--tap);
+  padding: 0.6rem 0.85rem;
+  background: var(--bg);
+  color: var(--ink-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard);
+}
+
+.segmented__option:hover {
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+
+.segmented__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.segmented__option:has(.segmented__input:checked),
+.segmented__option--selected {
+  background: var(--honey-wash);
+  border-color: var(--honey);
+  color: var(--honey-deep);
+  font-weight: 700;
+}
+
+.segmented__option:has(.segmented__input:focus-visible) {
+  outline: 2px solid var(--honey-deep);
+  outline-offset: 2px;
+}
+
+/* Fallback for engines without :has() — the class is set in React too. */
+.segmented__input:focus-visible + .segmented__label {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.segmented__mark {
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.segmented__option--selected .segmented__mark {
+  background: currentColor;
+}
+
+/* --- TagChip -------------------------------------------------------------- */
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.6rem;
+  background: oklch(0.32 0.06 265 / 0.1);
+  color: var(--indigo);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tag-chip--honey {
+  background: var(--honey-wash);
+  color: var(--honey-deep);
+}
+
+.tag-chip--ok {
+  background: oklch(0.52 0.1 155 / 0.12);
+  color: var(--ok);
+}
+
+.tag-chip--warn {
+  background: oklch(0.62 0.13 70 / 0.16);
+  color: oklch(0.48 0.12 70);
+}
+
+.tag-chip--danger {
+  background: oklch(0.5 0.14 25 / 0.1);
+  color: var(--danger);
+}
+
+.tag-chip--muted {
+  background: var(--surface-2);
+  color: var(--ink-muted);
+}
+
+/* --- Rule (the stationery motif) ------------------------------------------ */
+
+.rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background: var(--indigo);
+  opacity: 0.55;
+}
+
+.rule--short {
+  width: 4.5rem;
+}
+
+.rule--half {
+  width: 50%;
+}
+
+.rule--honey {
+  background: var(--honey);
+  opacity: 1;
+}
+
+.rule--night {
+  background: var(--night-ink);
+  opacity: 0.28;
+}
+
+.rule--center {
+  margin-inline: auto;
+}
+
+.rule--spaced {
+  margin-block: var(--space-6);
+}
+
+/* --- ProgressRule --------------------------------------------------------- */
+
+.progress-rule {
+  display: block;
+}
+
+.progress-rule__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.progress-rule__step {
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+
+.progress-rule__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+
+.progress-rule__track {
+  position: relative;
+  height: 2px;
+  background: var(--rule);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-rule__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  background: var(--honey);
+  border-radius: var(--radius-pill);
+  transform-origin: left center;
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+/* --- Cards & panels (used sparingly) -------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+
+.card--plain {
+  box-shadow: none;
+}
+
+/* --- Notice --------------------------------------------------------------- */
+
+.notice {
+  display: block;
+  padding: var(--space-5);
+  background: var(--honey-wash);
+  border-radius: var(--radius-card);
+  color: var(--ink);
+}
+
+.notice__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  margin-bottom: 0.35rem;
+}
+
+.notice--quiet {
+  background: var(--surface);
+}

@@ -1,0 +1,371 @@
+/* ==========================================================================
+   Everafter — app shells (guest site + admin console)
+   ========================================================================== */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1 1 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Guest site — a masthead, not a SaaS navbar
+   -------------------------------------------------------------------------- */
+
+.guest-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.guest-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: 4.25rem;
+  padding-block: 0.75rem;
+}
+
+.guest-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.guest-brand__amp {
+  color: var(--honey-deep);
+}
+
+.guest-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.guest-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.7rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--ink-muted);
+  border-radius: 6px;
+  transition: color var(--dur-base) var(--ease-standard);
+}
+
+.guest-nav__link:hover {
+  color: var(--ink);
+}
+
+.guest-nav__link[aria-current='page'] {
+  color: var(--ink);
+}
+
+/* Active page gets a honey tick beneath it — the only decoration up here. */
+.guest-nav__link[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.15rem;
+  height: 1px;
+  background: var(--honey);
+}
+
+.guest-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.guest-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0.4rem 0.75rem;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.guest-menu-toggle__bars {
+  display: grid;
+  gap: 3px;
+}
+
+.guest-menu-toggle__bars span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+}
+
+@media (min-width: 62rem) {
+  .guest-nav {
+    display: flex;
+  }
+
+  .guest-menu-toggle {
+    display: none;
+  }
+}
+
+/* --- mobile menu ---------------------------------------------------------- */
+
+.guest-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background: oklch(0.24 0.02 60 / 0.35);
+}
+
+.guest-menu {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: var(--z-modal);
+  width: min(22rem, 88vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  background: var(--bg);
+  border-left: 1px solid var(--rule);
+  overflow-y: auto;
+}
+
+.guest-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: var(--space-4);
+}
+
+.guest-menu__close {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.guest-menu__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0.5rem 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+
+.guest-menu__link[aria-current='page'] {
+  color: var(--honey-deep);
+}
+
+.guest-menu__cta {
+  margin-top: var(--space-5);
+}
+
+/* --- footer --------------------------------------------------------------- */
+
+.guest-footer {
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.guest-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.guest-footer__names {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.guest-footer__meta {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.guest-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Admin — calm, dense, no choreography
+   -------------------------------------------------------------------------- */
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.admin-nav {
+  background: var(--night);
+  color: var(--night-ink);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.admin-nav__brand {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--night-ink);
+}
+
+.admin-nav__brand small {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--night-muted);
+}
+
+.admin-nav__list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+
+.admin-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--tap);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--night-muted);
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+
+.admin-nav__link:hover {
+  background: oklch(1 0 0 / 0.06);
+  color: var(--night-ink);
+}
+
+.admin-nav__link[aria-current='page'] {
+  background: oklch(1 0 0 / 0.1);
+  color: var(--night-ink);
+}
+
+.admin-nav__icon {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--honey);
+}
+
+.admin-nav__foot {
+  margin-top: auto;
+  font-size: var(--fs-micro);
+  color: var(--night-muted);
+}
+
+.admin-nav__foot a {
+  color: var(--night-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.admin-main {
+  min-width: 0;
+  padding: var(--space-6) var(--gutter) var(--space-8);
+}
+
+@media (min-width: 56rem) {
+  .admin-shell {
+    grid-template-columns: var(--admin-nav-w) minmax(0, 1fr);
+  }
+
+  .admin-nav {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .admin-nav__list {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Shared page furniture
+   -------------------------------------------------------------------------- */
+
+.page-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.page-head__title {
+  font-size: var(--fs-h2);
+}
+
+.placeholder-page {
+  padding-block: var(--section-y);
+}
+
+.not-found {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: var(--space-4);
+  padding: var(--gutter);
+}

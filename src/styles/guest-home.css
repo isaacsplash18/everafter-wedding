@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Everafter — Home (guest)
+   Hero: full-bleed photo under a --night wash, orchestrated load timeline.
+   Below: three deliberately distinct compositions — pure type, panel list,
+   full-bleed band — never a repeated card reflex.
+   ========================================================================== */
+
+/* --- hero ------------------------------------------------------------------ */
+
+.home-hero {
+  position: relative;
+  min-height: min(46rem, 100vh);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--night);
+}
+
+.home-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The couple stand low in the frame, below the lake and the peak. Pulling
+     the crop down keeps both of them in the lighter upper band of the wash,
+     clear of the names. On narrow screens the photo fills the height, so
+     this only bites from tablet up. */
+  object-position: center 72%;
+}
+
+.home-hero__wash {
+  position: absolute;
+  inset: 0;
+  /* Deeper from mid-height down: the names sit in the lower half, and the
+     photo's tablecloths are near-white there. */
+  background:
+    linear-gradient(180deg, oklch(0.21 0.025 265 / 0.35) 0%, oklch(0.21 0.025 265 / 0.62) 45%, oklch(0.21 0.025 265 / 0.82) 72%, oklch(0.21 0.025 265 / 0.95) 100%);
+}
+
+.home-hero__content {
+  position: relative;
+  width: 100%;
+  padding: clamp(6rem, 22vh, 9rem) var(--gutter) clamp(3rem, 8vh, 4.5rem);
+  color: var(--night-ink);
+}
+
+.home-hero__rule {
+  width: 4.5rem;
+  height: 1px;
+  background: var(--honey);
+  opacity: 1;
+  margin-bottom: var(--space-5);
+  transform-origin: left center;
+}
+
+.home-hero__names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  color: var(--night-ink);
+}
+
+.home-hero__name {
+  display: block;
+}
+
+.home-hero__amp {
+  display: block;
+  color: var(--honey);
+  font-size: 0.4em;
+  line-height: 1;
+  margin-block: 0.1em;
+}
+
+.home-hero__meta {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  font-size: var(--fs-body);
+  color: var(--night-muted);
+}
+
+.home-hero__meta-sep {
+  opacity: 0.6;
+}
+
+.home-hero__bottom {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.countdown {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.countdown__number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--night-ink);
+}
+
+.countdown__unit {
+  font-size: var(--fs-small);
+  color: var(--night-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* --- story preview: a pure typographic moment, no photo ------------------- */
+
+.home-story {
+  padding-block: var(--section-y);
+}
+
+.home-story__inner {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 56rem) {
+  .home-story__inner {
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-8);
+  }
+}
+
+.home-story__mark {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 0.8;
+  color: var(--honey-wash);
+  -webkit-text-stroke: 1px var(--honey);
+}
+
+.home-story__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.32;
+  color: var(--ink);
+  max-width: 34ch;
+}
+
+.home-story__lede {
+  margin-top: var(--space-4);
+  color: var(--ink-muted);
+  max-width: var(--measure);
+}
+
+.home-story__link {
+  margin-top: var(--space-5);
+  display: inline-block;
+}
+
+/* --- schedule teaser: a panel list, not a card grid ------------------------ */
+
+.home-schedule {
+  background: var(--surface);
+  padding-block: var(--section-y);
+}
+
+.home-schedule__inner {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.home-schedule__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.home-schedule__note {
+  max-width: 32ch;
+  color: var(--ink-muted);
+}
+
+.home-schedule__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-schedule__item {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.home-schedule__item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.home-schedule__day {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--honey-deep);
+}
+
+.home-schedule__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.home-schedule__time {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 30rem) {
+  .home-schedule__item {
+    grid-template-columns: 3.6rem 1fr;
+  }
+  .home-schedule__time {
+    grid-column: 2;
+  }
+}
+
+/* --- travel teaser: full-bleed band, distinct from the hero ---------------- */
+
+.home-travel {
+  position: relative;
+  min-height: 22rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.home-travel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Low in the frame. The band's wash is only ~0.59 where the copy sits, so
+     the pale sand mid-photo drops body text to 2.7:1; the palms and surf
+     lower down take it to 6.7:1 while still reading as coast, not rock. */
+  object-position: center 85%;
+}
+
+.home-travel__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, oklch(0.21 0.025 265 / 0.88) 0%, oklch(0.21 0.025 265 / 0.5) 65%, oklch(0.21 0.025 265 / 0.3) 100%);
+}
+
+.home-travel__content {
+  position: relative;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-8) var(--gutter);
+  color: var(--night-ink);
+  max-width: 30rem;
+}
+
+.home-travel__content h2 {
+  color: var(--night-ink);
+}
+
+.home-travel__content p {
+  margin-top: var(--space-3);
+  color: var(--night-muted);
+  max-width: 34ch;
+}
+
+.home-travel__link {
+  margin-top: var(--space-5);
+}

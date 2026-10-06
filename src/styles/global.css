@@ -1,0 +1,286 @@
+/* ==========================================================================
+   Everafter — reset + base, wired to tokens.css
+   Sheet order matters: tokens (imported by main.tsx) -> this file -> ui/layout/rsvp.
+   ========================================================================== */
+
+@import './ui.css';
+@import './layout.css';
+@import './rsvp.css';
+
+/* --- reset ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root {
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+/* --- base ----------------------------------------------------------------- */
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Marcellus is the letterpress voice: names, page titles, event names. */
+h1,
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h2);
+}
+
+.display {
+  font-size: var(--fs-display);
+}
+
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-heading);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+h4 {
+  font-size: 1.0625rem;
+}
+
+/* Caps lines get the engraved spacing. */
+.caps {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+}
+
+small,
+.small {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+/* --- links ---------------------------------------------------------------- */
+
+a.link,
+.prose a {
+  color: var(--indigo-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+a.link:hover,
+.prose a:hover {
+  color: var(--indigo);
+}
+
+/* --- focus ---------------------------------------------------------------- */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--honey-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* On night surfaces the honey ring loses contrast; use paper. */
+.on-night :focus-visible {
+  outline-color: var(--night-ink);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-4);
+  z-index: var(--z-toast);
+  transform: translateY(-200%);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-button);
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-color: var(--honey);
+}
+
+/* --- utilities ------------------------------------------------------------ */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.prose {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.prose p + p {
+  margin-top: 1em;
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+
+.stack > * + * {
+  margin-top: var(--space-4);
+}
+
+.on-night {
+  background: var(--night);
+  color: var(--night-ink);
+}
+
+.on-night h1,
+.on-night h2,
+.on-night h3,
+.on-night h4,
+.on-night .display {
+  color: var(--night-ink);
+}
+
+.on-night .muted {
+  color: var(--night-muted);
+}
+
+/* --- print ---------------------------------------------------------------- */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

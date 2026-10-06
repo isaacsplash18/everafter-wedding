@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Everafter — Party: a roster, not a headshot grid. Monogram marks, rule
+   dividers between entries, no shadows.
+   ========================================================================== */
+
+.party-hero {
+  position: relative;
+  height: 14rem;
+  overflow: hidden;
+}
+
+.party-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.party-hero__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, oklch(0.21 0.025 265 / 0.2), oklch(0.21 0.025 265 / 0.72));
+}
+
+.party-hero__content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--gutter);
+  color: var(--night-ink);
+}
+
+.party-hero__content h1 {
+  color: var(--night-ink);
+}
+
+.party-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--gutter);
+}
+
+.party-intro {
+  max-width: var(--measure);
+  margin-bottom: var(--space-7);
+  color: var(--ink-muted);
+}
+
+.party-roster {
+  display: grid;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 46rem) {
+  .party-roster {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-7);
+  }
+}
+
+.party-person {
+  display: flex;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.party-person__mark {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--honey-wash);
+  color: var(--honey-deep);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.party-person__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.party-person__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.party-person__role {
+  margin-top: 0.15rem;
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--indigo);
+}
+
+.party-person__bio {
+  margin-top: 0.4rem;
+  color: var(--ink-muted);
+}

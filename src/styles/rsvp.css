@@ -1,0 +1,406 @@
+/* ==========================================================================
+   Everafter — the RSVP flow
+   Phone-first. 44px targets, one column, nothing clever with focus.
+   ========================================================================== */
+
+.rsvp {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: clamp(2rem, 6vh, 4rem) var(--gutter) clamp(4rem, 10vh, 6rem);
+}
+
+.rsvp__masthead {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.rsvp__masthead-names {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--ink);
+}
+
+.rsvp__masthead-meta {
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.rsvp__progress {
+  margin-bottom: var(--space-6);
+}
+
+/* The pane GSAP moves. Never hidden in CSS — it starts visible. */
+.rsvp__pane {
+  min-height: 18rem;
+}
+
+.rsvp__step-head {
+  margin-bottom: var(--space-5);
+}
+
+.rsvp__step-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.12;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.rsvp__step-title:focus {
+  outline: none;
+}
+
+.rsvp__lede {
+  margin-top: var(--space-3);
+  color: var(--ink-muted);
+  max-width: 54ch;
+}
+
+.rsvp__fields {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 34rem) {
+  .rsvp__fields--pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.rsvp__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.rsvp__actions--end {
+  justify-content: flex-end;
+}
+
+.rsvp__spacer {
+  flex: 1 1 auto;
+}
+
+/* --- live status ---------------------------------------------------------- */
+
+.rsvp__alert {
+  display: block;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-card);
+  background: var(--honey-wash);
+  color: var(--ink);
+}
+
+.rsvp__alert--error {
+  background: oklch(0.5 0.14 25 / 0.08);
+}
+
+.rsvp__alert-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  margin-bottom: 0.25rem;
+}
+
+.rsvp__alert p {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+/* --- person blocks -------------------------------------------------------- */
+
+.rsvp-people {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.rsvp-person {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.rsvp-person:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.rsvp-person__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+
+.rsvp-person__meta {
+  margin-top: 0.15rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.rsvp-person__body {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* --- attendance ----------------------------------------------------------- */
+
+.rsvp-event {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.rsvp-event:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.rsvp-event__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+
+.rsvp-event__when {
+  margin-top: 0.2rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.rsvp-event__note {
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--honey-deep);
+}
+
+.rsvp-event__people {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.rsvp-attend {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.rsvp-attend__name {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* --- plus-ones ------------------------------------------------------------ */
+
+.rsvp-plusone {
+  padding: var(--space-4);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.rsvp-plusone__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.rsvp-plusone__title {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+}
+
+.rsvp-members {
+  display: grid;
+  gap: 0.75rem;
+  margin-block: var(--space-5);
+}
+
+.rsvp-member-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rsvp-member-line:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rsvp-member-line__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.rsvp-member-line__meta {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+/* --- meals ---------------------------------------------------------------- */
+
+.rsvp-meal-menu {
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+}
+
+.rsvp-meal-menu__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-3);
+}
+
+.rsvp-meal-menu__item {
+  padding-block: 0.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-small);
+}
+
+.rsvp-meal-menu__item:first-of-type {
+  border-top: 0;
+}
+
+.rsvp-meal-menu__name {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.rsvp-meal-menu__desc {
+  color: var(--ink-muted);
+}
+
+/* --- review --------------------------------------------------------------- */
+
+.rsvp-review__group {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.rsvp-review__group:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.rsvp-review__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+
+.rsvp-review__list {
+  margin-top: var(--space-3);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.rsvp-review__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  font-size: var(--fs-small);
+}
+
+.rsvp-review__label {
+  color: var(--ink-muted);
+}
+
+.rsvp-review__value {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+
+.rsvp-review__value--declined {
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+.rsvp-review__notes {
+  margin-top: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+/* --- confirmation --------------------------------------------------------- */
+
+.rsvp-sealed {
+  text-align: center;
+  padding-block: clamp(2rem, 8vh, 5rem);
+}
+
+.rsvp-sealed__eyebrow {
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+}
+
+.rsvp-sealed__title {
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 8vw, 3.75rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.rsvp-sealed__rule {
+  height: 2px;
+  width: min(22rem, 80%);
+  margin: var(--space-5) auto;
+  border: 0;
+  background: var(--honey);
+  border-radius: var(--radius-pill);
+}
+
+.rsvp-sealed__body {
+  max-width: 46ch;
+  margin-inline: auto;
+  color: var(--ink-muted);
+}
+
+.rsvp-sealed__names {
+  margin-top: var(--space-5);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.rsvp-sealed__events {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.rsvp-sealed__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* --- closed --------------------------------------------------------------- */
+
+.rsvp-closed {
+  padding-block: clamp(2rem, 8vh, 4rem);
+}

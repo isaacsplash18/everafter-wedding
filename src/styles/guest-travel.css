@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Everafter — Travel: stationery hotel cards, getting-there, a weather note.
+   ========================================================================== */
+
+.travel-hero {
+  position: relative;
+  height: 16rem;
+  overflow: hidden;
+}
+
+.travel-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.travel-hero__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, oklch(0.21 0.025 265 / 0.15), oklch(0.21 0.025 265 / 0.75));
+}
+
+.travel-hero__content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--gutter);
+  color: var(--night-ink);
+}
+
+.travel-hero__content h1 {
+  color: var(--night-ink);
+}
+
+.travel-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 8vh, 5rem);
+}
+
+.travel-section__head {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+
+.travel-section__head p {
+  margin-top: var(--space-2);
+  color: var(--ink-muted);
+}
+
+/* --- hotels: stationery tickets, not booking-site cards -------------------- */
+
+.travel-hotels {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 42rem) {
+  .travel-hotels {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 68rem) {
+  .travel-hotels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.travel-hotel {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  position: relative;
+}
+
+.travel-hotel::before {
+  content: '';
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  left: 0;
+  width: 3px;
+  background: var(--honey);
+  border-radius: 0 3px 3px 0;
+}
+
+.travel-hotel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.travel-hotel__name {
+  font-size: 1.2rem;
+}
+
+.travel-hotel__distance {
+  font-size: var(--fs-micro);
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.travel-hotel__neighborhood {
+  margin-top: 0.2rem;
+}
+
+.travel-hotel__meta {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.travel-hotel__meta dt {
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+.travel-hotel__meta dd {
+  margin: 0.15rem 0 0;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.travel-hotel__code {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  color: var(--honey-deep);
+}
+
+/* --- getting there ---------------------------------------------------------- */
+
+.travel-transport {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .travel-transport {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.travel-transport-item {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.travel-transport-item h3 {
+  font-size: 1.1rem;
+}
+
+.travel-transport-item p {
+  margin-top: var(--space-2);
+  color: var(--ink-muted);
+}
+
+/* --- weather ----------------------------------------------------------------- */
+
+.travel-weather {
+  padding: var(--space-5);
+  background: var(--honey-wash);
+  border-radius: var(--radius-card);
+  max-width: var(--measure);
+}
+
+.travel-weather h3 {
+  font-size: var(--fs-h3);
+}
+
+.travel-weather p {
+  margin-top: var(--space-2);
+  color: var(--ink);
+}

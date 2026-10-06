@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Everafter — Schedule: a unified timeline, thin indigo rules throughout.
+   ========================================================================== */
+
+.schedule-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--gutter);
+}
+
+.schedule-head {
+  max-width: var(--measure);
+  margin-bottom: var(--space-6);
+}
+
+.schedule-head p {
+  margin-top: var(--space-3);
+  color: var(--ink-muted);
+}
+
+.schedule-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  background: var(--honey-wash);
+  border-radius: var(--radius-card);
+}
+
+.schedule-banner__text {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.schedule-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+
+.schedule-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.schedule-item__date {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.schedule-item__time {
+  margin-top: 0.3rem;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.schedule-item__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.schedule-item__name {
+  font-size: 1.4rem;
+}
+
+.schedule-item__venue {
+  margin-top: 0.35rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.schedule-item__address {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.schedule-item__desc {
+  margin-top: var(--space-3);
+  max-width: var(--measure);
+  color: var(--ink-muted);
+}
+
+.schedule-item__dress {
+  margin-top: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+
+.schedule-item__dress strong {
+  color: var(--honey-deep);
+}
+
+.schedule-empty {
+  padding-block: var(--space-7);
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 34rem) {
+  .schedule-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}

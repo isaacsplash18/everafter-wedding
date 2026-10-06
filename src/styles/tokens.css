@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Everafter — design tokens
+   "Letterpress invitation under late-afternoon light."
+   All colors OKLCH. Brand seed: oklch(0.764 0.120 77.1).
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- surfaces ---------------------------------------------------------- */
+  --bg: oklch(1 0 0);                    /* pure white — paper */
+  --surface: oklch(0.965 0.004 77);      /* cards/panels, barely-there warm */
+  --surface-2: oklch(0.93 0.008 77);     /* pressed/hover panel */
+
+  /* --- ink --------------------------------------------------------------- */
+  --ink: oklch(0.24 0.02 60);            /* warm near-black body text, >=7:1 on bg */
+  --ink-muted: oklch(0.45 0.02 60);      /* secondary text, >=4.5:1 on bg */
+
+  /* --- brand ------------------------------------------------------------- */
+  --honey: oklch(0.72 0.125 77);         /* primary brand — buttons, active states */
+  --honey-deep: oklch(0.52 0.115 72);    /* primary fills + small text (>=4.5:1 on bg and wash) */
+  --honey-pressed: oklch(0.44 0.11 70);  /* hover/active step down from honey-deep */
+  --honey-wash: oklch(0.95 0.025 80);    /* tint fill for selected states */
+
+  /* --- accent ------------------------------------------------------------ */
+  --indigo: oklch(0.32 0.06 265);        /* deep ink-blue — links, rules, admin nav */
+  --indigo-bright: oklch(0.45 0.09 265); /* interactive accent on white */
+
+  /* --- status (admin) ---------------------------------------------------- */
+  --ok: oklch(0.52 0.10 155);
+  --warn: oklch(0.62 0.13 70);
+  --danger: oklch(0.50 0.14 25);
+
+  /* --- dark section (guest site full-bleed moments) ---------------------- */
+  --night: oklch(0.21 0.025 265);        /* deep indigo-black section bg */
+  --night-ink: oklch(0.93 0.01 77);      /* text on night */
+  --night-muted: oklch(0.76 0.015 265);  /* secondary text on night, >=4.5:1 */
+  --night-rule: oklch(0.93 0.01 77 / 0.22);
+
+  /* --- hairlines & edges -------------------------------------------------
+     The recurring stationery motif: a 1px indigo rule, partial width.       */
+  --rule: oklch(0.32 0.06 265 / 0.3);
+  --rule-strong: oklch(0.32 0.06 265 / 0.55);
+  --border: oklch(0.45 0.02 60 / 0.5);   /* input borders (--ink-muted, softened) */
+  --border-firm: oklch(0.24 0.02 60);    /* secondary button border (--ink) */
+
+  /* --- typography -------------------------------------------------------- */
+  --font-display: 'Marcellus', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Karla', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  --fs-display: clamp(2.5rem, 7vw, 5.5rem);
+  --fs-h2: clamp(1.8rem, 4vw, 3rem);
+  --fs-h3: 1.35rem;
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.78125rem;
+
+  --lh-display: 1.06;
+  --lh-heading: 1.18;
+  --lh-body: 1.65;
+
+  --ls-caps: 0.06em;   /* Marcellus caps lines: up to +0.06em */
+  --ls-display: 0.01em;
+  --ls-label: 0.02em;
+
+  /* --- space ------------------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --section-y: clamp(4rem, 10vh, 8rem);
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --measure: 68ch;          /* prose max-width */
+  --page-max: 72rem;        /* wide layout max-width */
+  --admin-nav-w: 15rem;
+
+  /* --- radii & elevation ------------------------------------------------- */
+  --radius-button: 10px;
+  --radius-input: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.06);
+
+  /* --- touch ------------------------------------------------------------- */
+  --tap: 44px;              /* phone-first minimum touch target */
+
+  /* --- motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;        /* admin: calm, instant feedback */
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  /* --- z-index scale ----------------------------------------------------- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-backdrop: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+  }
+}
